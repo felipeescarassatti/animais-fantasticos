@@ -1,3 +1,4 @@
+// Animação fotos com texto, clica na foto e aparece o texto ref.
 function initTabNav() {
 const tabMenu = document.querySelectorAll('.js-tabmenu li');
 const tabContent = document.querySelectorAll('.js-tabcontent section');
@@ -21,6 +22,7 @@ tabMenu.forEach((itemMenu, index)=> {
 }
 initTabNav();
 
+// Animação Faq de perguntar, clica na pergunta e aparece a resposta
 function initAccordion(){
 const accordionList = document.querySelectorAll('.js-accordion dt');
 const activeClass = 'ativo';
@@ -39,6 +41,32 @@ if(accordionList.length) {
   });
   }
 }
-
 initAccordion();
 
+// Animação scroll suave do site
+function initScrollSuave(){
+  const linksInternos = document.querySelectorAll('.js-menu a[href^="#"]');
+
+  function scrollToSection(event){
+    event.preventDefault();
+    const href = event.currentTarget.getAttribute('href');
+    const section = document.querySelector(href);
+
+    section.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start'
+    });
+
+    // forma alternativa
+    //const topo = section.offsetTop;
+    //window.scrollTo({
+    //  top: topo,
+    //  behavior: 'smooth'
+    //});
+  }
+
+  linksInternos.forEach((link)=>{
+    link.addEventListener('click', scrollToSection);
+  });
+}
+initScrollSuave();
